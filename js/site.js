@@ -140,17 +140,43 @@
       </div>
     </a>`;
 
+
+  // příspěvky do sloupců po řádcích (nejnovější vlevo nahoře), obrázky se neořezávají
+  const masonry = (el) => {
+    const cards = [...el.querySelectorAll(".post")];
+    let current = 0;
+    const layout = () => {
+      const n = innerWidth <= 560 ? 1 : innerWidth <= 980 ? 2 : 3;
+      if (n === current) return;
+      current = n;
+      const cols = Array.from({ length: n }, () => {
+        const c = document.createElement("div");
+        c.className = "posts-col";
+        return c;
+      });
+      cards.filter((c) => !c.hidden).forEach((c, i) => cols[i % n].appendChild(c));
+      cards.filter((c) => c.hidden).forEach((c) => cols[0].appendChild(c));
+      el.replaceChildren(...cols);
+    };
+    layout();
+    addEventListener("resize", layout);
+    return () => { current = 0; layout(); };
+  };
+
   const postsEl = document.getElementById("posts");
   if (postsEl) {
     const FIRST = 6;
     postsEl.innerHTML = posts.map((p, i) => postCard(p).replace("<a ", i >= FIRST ? "<a hidden " : "<a ")).join("");
+    const relayout = masonry(postsEl);
     const more = document.getElementById("posts-more");
     if (more) {
       if (posts.length <= FIRST) more.remove();
       else
         more.addEventListener("click", () => {
+          const firstNew = postsEl.querySelectorAll(".post[hidden]")[0];
           postsEl.querySelectorAll("[hidden]").forEach((el) => (el.hidden = false));
-          postsEl.querySelectorAll(".post")[FIRST]?.focus();
+          relayout();
+          firstNew?.focus();
           more.remove();
         });
     }
@@ -286,6 +312,8 @@
             ? `<a class="next-project" href="${link(next)}"><span>${UI.next}</span><strong>${esc(tr(next, "title"))}</strong></a>`
             : ""
         }`;
+
+      detailEl.querySelectorAll(".posts").forEach(masonry);
 
       // obálka na výšku se nemá ořezávat
       const coverImg = detailEl.querySelector(".project-cover img");
