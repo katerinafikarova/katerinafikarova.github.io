@@ -26,6 +26,7 @@
       mentions: "Odkazy a příspěvky",
       next: "Další projekt",
       video: "Video k projektu",
+      fillText: "Další práce všeho druhu přibývá na sítích.",
       switchTo: "EN",
       switchLabel: "Switch to English",
     },
@@ -43,6 +44,7 @@
       mentions: "Links and posts",
       next: "Next project",
       video: "Video for project",
+      fillText: "More work of every kind keeps landing on my socials.",
       switchTo: "CZ",
       switchLabel: "Přepnout do češtiny",
     },
@@ -127,7 +129,7 @@
 
   const postCard = (p) => `
     <a class="post post-${esc(p.kind)}${p.img ? " has-img" : ""}" href="${esc(p.url)}" ${ext}>
-      ${p.img ? `<div class="post-img"><img src="${esc(p.img)}" alt="" loading="lazy"></div>` : ""}
+      ${p.img ? `<div class="post-img"><img src="${esc(p.img)}" alt="" loading="lazy"${p.size ? ` width="${p.size[0]}" height="${p.size[1]}"` : ""}></div>` : ""}
       <div class="post-body">
         <span class="post-meta">
           <span class="pill">${esc(KIND_NAME[p.kind] || "Web")}</span>
@@ -141,9 +143,15 @@
     </a>`;
 
 
-  // příspěvky do sloupců po řádcích (nejnovější vlevo nahoře), obrázky se neořezávají
-  const masonry = (el) => {
+  // příspěvky do sloupců (nejnovější nahoře, každý do nejkratšího sloupce), obrázky se neořezávají
+  const masonry = (el, filler) => {
     const cards = [...el.querySelectorAll(".post")];
+    // skutečná výška obsahu sloupce (sloupce se natahují, takže offsetHeight nestačí)
+    const used = (c) => {
+      const last = [...c.children].filter((x) => !x.hidden).pop();
+      return last ? last.getBoundingClientRect().bottom - c.getBoundingClientRect().top : 0;
+    };
+    const shortestOf = (cols) => cols.reduce((a, b) => (used(b) < used(a) ? b : a));
     let current = 0;
     const layout = () => {
       const n = innerWidth <= 560 ? 1 : innerWidth <= 980 ? 2 : 3;
@@ -154,9 +162,15 @@
         c.className = "posts-col";
         return c;
       });
-      cards.filter((c) => !c.hidden).forEach((c, i) => cols[i % n].appendChild(c));
-      cards.filter((c) => c.hidden).forEach((c) => cols[0].appendChild(c));
       el.replaceChildren(...cols);
+      // každou další kartu do nejkratšího sloupce, aby sloupce končily co nejrovněji
+      cards.filter((c) => !c.hidden).forEach((c) => {
+        shortestOf(cols).appendChild(c);
+      });
+      cards.filter((c) => c.hidden).forEach((c) => cols[0].appendChild(c));
+      // volné místo pod nejkratším sloupcem vyplní karta s odkazy na sítě
+      if (filler && n > 1) shortestOf(cols).appendChild(filler);
+      else if (filler) filler.remove();
     };
     layout();
     addEventListener("resize", layout);
@@ -167,7 +181,16 @@
   if (postsEl) {
     const FIRST = 6;
     postsEl.innerHTML = posts.map((p, i) => postCard(p).replace("<a ", i >= FIRST ? "<a hidden " : "<a ")).join("");
-    const relayout = masonry(postsEl);
+    const filler = document.createElement("div");
+    filler.className = "posts-fill";
+    filler.innerHTML = `
+      <span class="star" aria-hidden="true"></span>
+      <p>${UI.fillText}</p>
+      <span class="posts-fill-links">
+        <a class="btn" href="https://www.linkedin.com/in/kate%C5%99ina-fikarov%C3%A1-390323252/" ${ext}>LinkedIn${extLabel}</a>
+        <a class="btn" href="https://www.instagram.com/fikarovakaterina/" ${ext}>Instagram${extLabel}</a>
+      </span>`;
+    const relayout = masonry(postsEl, filler);
     const more = document.getElementById("posts-more");
     if (more) {
       if (posts.length <= FIRST) more.remove();
