@@ -30,6 +30,13 @@ Statický web pro GitHub Pages. Nic se nekompiluje: co je ve složce, to je na w
 - **Odkazy u projektu** (AR prototyp, e-shop, Instagram účet…) přidáš do pole `links` u projektu.
 - U položek v „Další práci“ můžeš doplnit `link`, pak je název klikací.
 
+## Anglická verze
+
+- Přepínač **CZ / EN** je v hlavičce. Volba se pamatuje a odkazy ji nesou dál (`?lang=en`).
+- Překlady projektů, příspěvků, štítků a odkazů jsou v `js/en.js`. Co tam chybí, ukáže se v angličtině česky.
+- Texty přímo v HTML mají anglickou verzi v atributu `data-en="…"`. Když v HTML změníš český text, uprav i ten anglický.
+- Obrázky z příspěvků jsou ve složce `images/posty/` a u příspěvku je vybírá pole `img`.
+
 ## Jak přidat nový projekt
 
 V `js/projects.js` zkopíruj jeden existující blok `{ ... }`, změň `slug` a texty. Pokud chceš projekt na úvodní stránce, nastav `featured: true`. Malé věci bez vlastní stránky dej s `detail: false`, objeví se v „Další práci“.

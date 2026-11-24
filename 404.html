@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stránka nenalezena | Kateřina Fikarová</title>
-  <meta name="description" content="Tahle stránka neexistuje.">
-  <meta property="og:title" content="Stránka nenalezena | Kateřina Fikarová">
-  <meta property="og:description" content="Tahle stránka neexistuje.">
+  <title data-en="Page not found | Kateřina Fikarová">Stránka nenalezena | Kateřina Fikarová</title>
+  <meta name="description" content="Tahle stránka neexistuje." data-en-content="This page does not exist.">
+  <meta property="og:title" content="Stránka nenalezena | Kateřina Fikarová" data-en-content="Page not found | Kateřina Fikarová">
+  <meta property="og:description" content="Tahle stránka neexistuje." data-en-content="This page does not exist.">
   <meta property="og:image" content="images/hero.webp">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23151515'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='%23fff' text-anchor='middle'%3EKF%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,37 +15,40 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a class="skip" href="#obsah">Přeskočit na obsah</a>
+  <a class="skip" href="#obsah" data-en="Skip to content">Přeskočit na obsah</a>
 
-  <div class="teaser" role="note" aria-label="Web je ve vývoji">
+  <div class="teaser" role="note" aria-label="Web je ve vývoji" data-en-aria-label="Site in progress">
     <span class="teaser-dot" aria-hidden="true"></span>
     <div class="teaser-track">
-      <p class="teaser-run"><span>Něco se chystá</span><span class="sep" aria-hidden="true"></span><span>Web je zatím ve vývoji</span><span class="sep" aria-hidden="true"></span><span>Brzy přibudou další projekty</span><span class="sep" aria-hidden="true"></span></p>
-      <p class="teaser-run" aria-hidden="true"><span>Něco se chystá</span><span class="sep" aria-hidden="true"></span><span>Web je zatím ve vývoji</span><span class="sep" aria-hidden="true"></span><span>Brzy přibudou další projekty</span><span class="sep" aria-hidden="true"></span></p>
+      <p class="teaser-run" data-en="&lt;span&gt;Something&#x27;s coming&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;Site still in progress&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;More projects soon&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;"><span>Něco se chystá</span><span class="sep" aria-hidden="true"></span><span>Web je zatím ve vývoji</span><span class="sep" aria-hidden="true"></span><span>Brzy přibudou další projekty</span><span class="sep" aria-hidden="true"></span></p>
+      <p class="teaser-run" aria-hidden="true" data-en="&lt;span&gt;Something&#x27;s coming&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;Site still in progress&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;More projects soon&lt;/span&gt;&lt;span class=&quot;sep&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;"><span>Něco se chystá</span><span class="sep" aria-hidden="true"></span><span>Web je zatím ve vývoji</span><span class="sep" aria-hidden="true"></span><span>Brzy přibudou další projekty</span><span class="sep" aria-hidden="true"></span></p>
     </div>
   </div>
 
   <header class="wrap site-header">
     <a class="logo" href="index.html"><span class="star" aria-hidden="true"></span>Kateřina Fikarová</a>
-    <nav class="nav" aria-label="Hlavní menu">
-      <a href="index.html">Úvod</a>
-      <a href="projekty.html">Projekty</a>
-      <a href="o-mne.html">O mně</a>
+    <nav class="nav" aria-label="Hlavní menu" data-en-aria-label="Main menu">
+      <a href="index.html" data-en="Home">Úvod</a>
+      <a href="projekty.html" data-en="Projects">Projekty</a>
+      <a href="o-mne.html" data-en="About">O mně</a>
     </nav>
-    <a class="btn header-cta" href="#kontakt">Napsat mi</a>
+    <div class="header-actions">
+      <button class="lang-switch" type="button" data-lang-switch>EN</button>
+      <a class="btn header-cta" href="#kontakt" data-en="Get in touch">Napsat mi</a>
+    </div>
   </header>
 
   <main id="obsah">
     <section class="wrap page-head">
-      <h1>Tady nic není.<span class="faded"> Zkuste úvod nebo projekty.</span></h1>
-      <p class="contact-links"><a class="btn" href="index.html">Úvodní stránka</a> <a class="btn" href="projekty.html">Projekty</a></p>
+      <h1 data-en="Nothing here.&lt;span class=&quot;faded&quot;&gt; Try the homepage or projects.&lt;/span&gt;">Tady nic není.<span class="faded"> Zkuste úvod nebo projekty.</span></h1>
+      <p class="contact-links"><a class="btn" href="index.html" data-en="Homepage">Úvodní stránka</a> <a class="btn" href="projekty.html" data-en="Projects">Projekty</a></p>
     </section>
   </main>
 
   <div class="footer-shell" id="kontakt">
     <footer class="site-footer">
       <div class="wrap">
-        <h2>Máte nápad?<span class="faded"> Pojďme ho dotáhnout.</span></h2>
+        <h2 data-en="Got an idea?&lt;span class=&quot;faded&quot;&gt; Let&#x27;s make it happen.&lt;/span&gt;">Máte nápad?<span class="faded"> Pojďme ho dotáhnout.</span></h2>
         <div class="contact-links">
           <a class="btn primary" href="mailto:katerina.fikarova@icloud.com">katerina.fikarova@icloud.com</a>
           <a class="btn" href="https://www.linkedin.com/in/kate%C5%99ina-fikarov%C3%A1-390323252/" target="_blank" rel="noopener">LinkedIn</a>
@@ -56,13 +59,14 @@
         </div>
         <div class="footer-bottom">
           <span>© <span data-year></span> Kateřina Fikarová</span>
-          <span>Graphic Designer, Creative Communication &amp; Media Specialist, Praha</span>
+          <span data-en="Graphic Designer, Creative Communication &amp;amp; Media Specialist, Prague">Graphic Designer, Creative Communication &amp; Media Specialist, Praha</span>
         </div>
       </div>
     </footer>
   </div>
 
   <script src="js/projects.js"></script>
+  <script src="js/en.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>
