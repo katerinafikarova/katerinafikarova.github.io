@@ -540,7 +540,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
    ========================================================= */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.posts { display: flex; gap: clamp(.75rem, 1.5vw, 1.25rem); align-items: flex-start; }
+.posts { display: flex; gap: clamp(.75rem, 1.5vw, 1.25rem); align-items: stretch; }
 .posts-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: clamp(.75rem, 1.5vw, 1.25rem); }
 .post {
   display: flex; flex-direction: column; width: 100%;
@@ -563,6 +563,15 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .post-text { font-size: var(--step--1); line-height: 1.5; color: var(--muted); }
 .post.post-instagram .post-meta time, .post.post-instagram .post-text, .post.post-instagram .post-by { color: var(--on-dark); }
 .post-open { margin-top: auto; padding-top: .2rem; font-size: var(--step--1); font-weight: 500; text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+.posts-fill {
+  flex: 1; min-height: 13rem;
+  display: flex; flex-direction: column; justify-content: flex-end; gap: 1rem;
+  padding: 1.4rem 1.25rem; border-radius: var(--r-lg);
+  background: var(--pink); color: var(--claret);
+}
+.posts-fill .star { width: 4.2rem; height: 3.6rem; margin-bottom: auto; }
+.posts-fill p { margin: 0; font-size: var(--step-1); font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
+.posts-fill-links { display: flex; flex-wrap: wrap; gap: .5rem; }
 .posts-more-wrap { margin: 1.5rem 0 0; max-width: none; text-align: center; }
 
 .mentions { padding-bottom: clamp(3rem, 7vw, 5rem); }
