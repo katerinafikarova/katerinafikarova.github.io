@@ -24,6 +24,12 @@ Statický web pro GitHub Pages. Nic se nekompiluje: co je ve složce, to je na w
 
 **Složka `PROJEKTY/`** obsahuje zdrojové materiály. Na GitHub se nenahrává (je v `.gitignore`), web používá jen zmenšené obrázky ve složce `images/`.
 
+## Odkazy a příspěvky na sítích
+
+- **Příspěvky** (LinkedIn, Instagram…) jsou v `js/projects.js` dole v seznamu `POSTS`. Na úvodní stránce se ukážou v sekci „Na sítích a v médiích“ (nejnovější nahoře), a pokud mají `project`, i na stránce daného projektu.
+- **Odkazy u projektu** (AR prototyp, e-shop, Instagram účet…) přidáš do pole `links` u projektu.
+- U položek v „Další práci“ můžeš doplnit `link`, pak je název klikací.
+
 ## Jak přidat nový projekt
 
 V `js/projects.js` zkopíruj jeden existující blok `{ ... }`, změň `slug` a texty. Pokud chceš projekt na úvodní stránce, nastav `featured: true`. Malé věci bez vlastní stránky dej s `detail: false`, objeví se v „Další práci“.
