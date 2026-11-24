@@ -24,6 +24,50 @@
       </div>
     </a>`;
 
+  /* ---------- Příspěvky na sítích ---------- */
+  const posts = (window.POSTS || []).slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  const KIND = {
+    linkedin: { name: "LinkedIn", open: "Otevřít na LinkedInu" },
+    instagram: { name: "Instagram", open: "Otevřít na Instagramu" },
+    web: { name: "Web", open: "Otevřít stránku" },
+    ar: { name: "AR", open: "Vyzkoušet" },
+  };
+  const kindOf = (k) => KIND[k] || KIND.web;
+  const fmtDate = (d) => {
+    const [y, m, day] = String(d || "").split("-").map(Number);
+    return y ? `${day}. ${m}. ${y}` : "";
+  };
+  const ext = `target="_blank" rel="noopener"`;
+  const extLabel = `<span class="visually-hidden"> (otevře se v novém okně)</span>`;
+
+  const postCard = (p) => `
+    <a class="post post-${esc(p.kind)}" href="${esc(p.url)}" ${ext}>
+      <span class="post-meta">
+        <span class="pill">${esc(kindOf(p.kind).name)}</span>
+        <time datetime="${esc(p.date)}">${fmtDate(p.date)}</time>
+      </span>
+      <h3>${esc(p.title)}</h3>
+      ${p.by ? `<span class="post-by">Příspěvek od ${esc(p.by)}</span>` : ""}
+      ${p.text ? `<p>${esc(p.text)}</p>` : ""}
+      <span class="post-open">${esc(kindOf(p.kind).open)}${extLabel}</span>
+    </a>`;
+
+  const postsEl = document.getElementById("posts");
+  if (postsEl) {
+    const FIRST = 6;
+    postsEl.innerHTML = posts.map((p, i) => postCard(p).replace("<a ", i >= FIRST ? "<a hidden " : "<a ")).join("");
+    const more = document.getElementById("posts-more");
+    if (more) {
+      if (posts.length <= FIRST) more.remove();
+      else
+        more.addEventListener("click", () => {
+          postsEl.querySelectorAll("[hidden]").forEach((el) => (el.hidden = false));
+          postsEl.querySelectorAll(".post")[FIRST]?.focus();
+          more.remove();
+        });
+    }
+  }
+
   /* ---------- Úvod: vybrané projekty ---------- */
   const featuredEl = document.getElementById("featured");
   if (featuredEl) featuredEl.innerHTML = detailed.filter((p) => p.featured).map(card).join("");
@@ -35,7 +79,7 @@
         (p) => `
         <li>
           <span class="year">${esc(p.year)}</span>
-          <span class="title">${esc(p.title)}</span>
+          <span class="title">${p.link ? `<a href="${esc(p.link)}" ${ext}>${esc(p.title)}${extLabel}</a>` : esc(p.title)}</span>
           <span class="client">${esc(p.client)}, ${esc(p.role)}</span>
           ${tagList(p.tags)}
         </li>`
@@ -100,6 +144,7 @@
     } else {
       document.title = `${p.title} | Kateřina Fikarová`;
       const next = detailed[(i + 1) % detailed.length];
+      const projectPosts = posts.filter((x) => x.project === p.slug);
       const step = (h, t) => (t ? `<div class="story-step"><h2>${h}</h2><p>${esc(t)}</p></div>` : "");
       const facts = [
         ["Pro", p.client],
@@ -129,6 +174,21 @@
           ${step("Řešení", p.solution)}
           ${step("Výsledek", p.result)}
         </section>
+        ${
+          (p.links || []).length || projectPosts.length
+            ? `<section class="mentions" aria-labelledby="ohlasy">
+                <h2 id="ohlasy">Odkazy a příspěvky</h2>
+                ${
+                  (p.links || []).length
+                    ? `<ul class="link-list">${p.links
+                        .map((l) => `<li><a class="btn${l.kind === "ar" ? " primary" : ""}" href="${esc(l.url)}" ${ext}>${esc(l.label)}${extLabel}</a></li>`)
+                        .join("")}</ul>`
+                    : ""
+                }
+                ${projectPosts.length ? `<div class="posts">${projectPosts.map(postCard).join("")}</div>` : ""}
+              </section>`
+            : ""
+        }
         ${p.video ? `<div class="video"><iframe src="${esc(p.video)}" title="Video k projektu ${esc(p.title)}" allowfullscreen loading="lazy"></iframe></div>` : ""}
         ${
           (p.gallery || []).length

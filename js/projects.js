@@ -19,6 +19,12 @@
   - gallery        → [{ src, alt, wide }]: wide: true = přes celou šířku,
                      jinak se obrázky skládají po dvou vedle sebe
   - video          → embed odkaz z YouTube/Vimea, nebo null
+  - links          → odkazy ven: [{ label, url, kind }]
+                     kind: "web", "ar", "instagram" nebo "linkedin"
+  - link           → (jen u „Další práce“) odkaz, kam řádek vede
+
+  Příspěvky na sítích jsou dole v seznamu POSTS. U projektu se ukážou samy,
+  když mají "project" stejný jako slug projektu.
 */
 
 window.TAGS = [
@@ -65,11 +71,18 @@ window.PROJECTS = [
       { src: IMG + "na-zdravi-smichove/poster.webp", alt: "Soutěžní plakát Na zdraví, Smíchove" },
       { src: IMG + "na-zdravi-smichove/vystava-plakatu.webp", alt: "Výstava soutěžních plakátů na kartonových stojanech" },
       { src: IMG + "na-zdravi-smichove/Katerina-a-Karolina-u-plakatu.webp", alt: "Kateřina a Karolína u svého plakátu na výstavě" },
-      { src: IMG + "na-zdravi-smichove/Katerina-a-Karolina-s-trofeji-a-diplomem.webp", alt: "Kateřina a Karolína s trofejí a diplomem vítězek kategorie", wide: true },
-      { src: IMG + "na-zdravi-smichove/trofej-pred-plakatem.webp", alt: "Skleněná trofej POPAI Student Award před plakátem" },
+      { src: IMG + "na-zdravi-smichove/predavani-ceny.webp", alt: "Předávání ceny na pódiu POPAI DAY, za námi projekce návrhu Na zdraví, Smíchove", wide: true },
+      { src: IMG + "na-zdravi-smichove/vitezky-na-podiu.webp", alt: "Karolína a Kateřina s diplomem na pódiu POPAI DAY" },
+      { src: IMG + "na-zdravi-smichove/trofej-v-ruce.webp", alt: "Skleněná trofej POPAI Student Award v ruce před plakátem" },
+      { src: IMG + "na-zdravi-smichove/vitezky-s-porotou.webp", alt: "Vítězky kategorie na pódiu spolu se zástupkyněmi pořadatele", wide: true },
+      { src: IMG + "na-zdravi-smichove/Katerina-a-Karolina-s-trofeji-a-diplomem.webp", alt: "Kateřina a Karolína s trofejí a diplomem vítězek kategorie" },
       { src: IMG + "na-zdravi-smichove/diplom-vitez-kategorie.webp", alt: "Diplom Vítěz kategorie POPAI Student Award 2026" },
     ],
     video: null,
+    links: [
+      { label: "Vyzkoušet AR prototyp", url: "https://katerinafikarova.github.io/na-zdravi/", kind: "ar" },
+      { label: "POPAI Student Award", url: "https://www.popai.cz/popai-day/popai-student-award", kind: "web" },
+    ],
   },
   {
     slug: "topgal-x",
@@ -106,6 +119,9 @@ window.PROJECTS = [
       { src: IMG + "topgal-x/upgrade.webp", alt: "Tohle nebyl rozchod se školním projektem. Tohle byl upgrade." },
     ],
     video: null,
+    links: [
+      { label: "Kolekce Topgal X v e-shopu", url: "https://www.topgal.cz/topgal-x", kind: "web" },
+    ],
   },
   {
     slug: "padel-league",
@@ -206,6 +222,10 @@ window.PROJECTS = [
       "Kampaně jako „Reportéři na startu“ a studentské workshopy. Online komunikace se zmodernizovala a vzrostl organický dosah.",
     gallery: [],
     video: null,
+    links: [
+      { label: "@akademie_ct24", url: "https://www.instagram.com/akademie_ct24/", kind: "instagram" },
+      { label: "@ceskatelevize_kariera", url: "https://www.instagram.com/ceskatelevize_kariera/", kind: "instagram" },
+    ],
   },
   {
     slug: "kytky-od-pepy",
@@ -247,6 +267,36 @@ window.PROJECTS = [
     detail: false,
   },
   {
+    slug: "erasmus-kolding",
+    title: "Design Week: zadání pro LEGO Group",
+    year: "2026",
+    client: "Erasmus+, IBA Erhvervsakademi Kolding, Dánsko",
+    role: "Design thinking v mezinárodním týmu",
+    tags: ["Koncept a kampaň", "UX/UI"],
+    detail: false,
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7464028452703059969/",
+  },
+  {
+    slug: "biscuit-font",
+    title: "Biscuit Font: písmo upečené z perníku",
+    year: "2026",
+    client: "VŠKK, semestrální projekt",
+    role: "Experimentální typografie",
+    tags: ["Grafika"],
+    detail: false,
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7446896611286458369/",
+  },
+  {
+    slug: "frankfurt",
+    title: "Kampaň českého hostování na knižním veletrhu ve Frankfurtu",
+    year: "2026",
+    client: "VŠKK, vystaveno na Masarykově nádraží",
+    role: "Koncept a grafika kampaně",
+    tags: ["Koncept a kampaň", "Grafika"],
+    detail: false,
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7443363488657252352/",
+  },
+  {
     slug: "czech-promotion",
     title: "Koncepty a kreativní strategie",
     year: "2026",
@@ -254,5 +304,76 @@ window.PROJECTS = [
     role: "Externí spolupráce",
     tags: ["Koncept a kampaň"],
     detail: false,
+    link: "https://www.linkedin.com/feed/update/urn:li:activity:7437472707883053057/",
   },
+];
+
+/*
+  ============================================================
+  PŘÍSPĚVKY NA SÍTÍCH — LinkedIn, Instagram a další
+  ============================================================
+  Nový příspěvek přidáš tak, že zkopíruješ jeden řádek { ... }.
+  - kind:    "linkedin" nebo "instagram" (nebo "web")
+  - date:    RRRR-MM-DD (podle data se řadí, nejnovější první)
+  - project: slug projektu, u kterého se má příspěvek ukázat (nebo null)
+  - by:      kdo příspěvek zveřejnil, když to nejsi ty, ve 2. pádě („Příspěvek od …“, např. "VŠKK", "Jakuba Sodomky")
+  Odkaz na příspěvek z LinkedInu: u příspěvku klikni na „…“ → „Kopírovat odkaz na příspěvek“.
+*/
+window.POSTS = [
+  { kind: "instagram", date: "2026-11-24", by: "VŠKK", project: "na-zdravi-smichove",
+    title: "Studentky VŠKK vítězkami POPAI Student Award 2026",
+    text: "Škola o našem vítězství: 20. ročník, skoro 90 projektů a AR zážitek, ve kterém si přiťuknete se sládkem.",
+    url: "https://www.instagram.com/p/DgIDd8tpXik/" },
+  { kind: "linkedin", date: "2026-11-23", project: "na-zdravi-smichove",
+    title: "Oficiální fotky z předávání cen",
+    text: "Ohlédnutí za POPAI DAY a první místo v kategorii Grafický 2D návrh.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7530579838789885952/" },
+  { kind: "linkedin", date: "2026-11-19", project: "na-zdravi-smichove",
+    title: "Z jednoho komentáře první místo",
+    text: "Před rokem jsme si pod příspěvkem slíbily, že se přihlásíme spolu a vyhrajeme. Slib jsme dodržely.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7529190259633319936/" },
+  { kind: "linkedin", date: "2026-11-19", project: "na-zdravi-smichove",
+    title: "Na zdraví, Smíchove! Vyhrály jsme",
+    text: "Vítězky kategorie Grafický 2D návrh na POPAI Student Award 2026 s konceptem pro Pivovary Staropramen.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7529188025721843712/" },
+  { kind: "linkedin", date: "2026-11-10", project: "na-zdravi-smichove",
+    title: "Je to venku: soutěžní návrh pro Staropramen",
+    text: "Nová podoba mostu přes ulici Svornosti, od první skici po AR prototyp.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7525848539399303168/" },
+  { kind: "linkedin", date: "2026-10-20", project: "padel-league",
+    title: "Padel League na Masarykově nádraží",
+    text: "Vizuální identita a aplikace pro padelové turnaje se z Náplavky přesunuly do haly nádraží.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7518303422551621632/" },
+  { kind: "linkedin", date: "2026-10-06", project: "padel-league",
+    title: "Systém navržený tak, aby se sdílel sám",
+    text: "Padel League na výstavě NáplavKKa 2026. Návrh vyhrál workshop a aplikace se bude reálně vyvíjet.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7513301517534195712/" },
+  { kind: "linkedin", date: "2026-07-24", project: "topgal-x",
+    title: "Příběh Topgal X: case study",
+    text: "Ze školního projektu skutečná značka. Celý příběh od prvního insightu po launch v 19 stránkách.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7486351592456196096/" },
+  { kind: "linkedin", date: "2026-05-23", project: null,
+    title: "Erasmus: Design Week v dánském Koldingu",
+    text: "Týden v mezinárodním týmu MAD KONG! nad zadáním pro LEGO Group, od výzkumu po finální pitch.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7464028452703059969/" },
+  { kind: "linkedin", date: "2026-04-06", project: null,
+    title: "Biscuit Font: může se typografie péct v troubě?",
+    text: "Jedlá rodina písma z perníkového těsta ve třech stavech: Raw, Baked a Gingerbread.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7446896611286458369/" },
+  { kind: "linkedin", date: "2026-03-27", project: "topgal-x",
+    title: "Výstava VŠKK na Masarykově nádraží",
+    text: "Topgal X a kampaň českého hostování na knižním veletrhu ve Frankfurtu mezi 22 vystavenými projekty.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7443363488657252352/" },
+  { kind: "linkedin", date: "2026-03-26", by: "Jakuba Sodomky", project: "kytky-od-pepy",
+    title: "Kytky od Pepy očima Jakuba Sodomky",
+    text: "Zakladatel SDMK vyzdvihl naši case study redesignu objednávkového procesu jako funkční prototyp.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7442840296289353728/" },
+  { kind: "linkedin", date: "2026-03-13", project: "topgal-x",
+    title: "Rok od prvního briefu pro Topgal",
+    text: "Jeden školní projekt a tolik příležitostí, od vítězného konceptu po stáž v Czech Promotion.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7438226402421780481/" },
+  { kind: "linkedin", date: "2026-03-11", project: null,
+    title: "The Best of Czech Promotion summit",
+    text: "Velká akce ze zákulisí: pomáhala jsem přímo v centru dění.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7437472707883053057/" },
 ];
