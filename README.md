@@ -30,6 +30,11 @@ Statický web pro GitHub Pages. Nic se nekompiluje: co je ve složce, to je na w
 - **Odkazy u projektu** (AR prototyp, e-shop, Instagram účet…) přidáš do pole `links` u projektu.
 - U položek v „Další práci“ můžeš doplnit `link`, pak je název klikací.
 
+## Identita: Ferda mravenec, práce všeho druhu
+
+- Barvy jsou v `css/style.css` nahoře: **Claret** `#670626` a **Pink** `#FFBDC5`.
+- Mraveneček je v `images/mravenec.svg` (ikona webu je `images/favicon.svg`). Na webu se objeví všude, kde je `<span class="star"></span>`; barvu bere z `background`.
+
 ## Anglická verze
 
 - Přepínač **CZ / EN** je v hlavičce. Volba se pamatuje a odkazy ji nesou dál (`?lang=en`).
