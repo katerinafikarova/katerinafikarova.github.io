@@ -30,6 +30,12 @@ Statický web pro GitHub Pages. Nic se nekompiluje: co je ve složce, to je na w
 - **Odkazy u projektu** (AR prototyp, e-shop, Instagram účet…) přidáš do pole `links` u projektu.
 - U položek v „Další práci“ můžeš doplnit `link`, pak je název klikací.
 
+## Prezentace „First impressions“ (5 minut)
+
+- Stránka `prezentace.html`: vizitka a představení, tři vybrané projekty a kontakt. Česky i anglicky (tlačítko CZ/EN).
+- Ovládání: šipky nebo mezerník, **T** spustí či zastaví časomíru 5:00 (dvojklik na ni vrátí čas), **F** celá obrazovka.
+- Texty jsou přímo v `prezentace.html` (anglická verze v `data-en`), vzhled v `css/prezentace.css`.
+
 ## Identita: Ferda mravenec, práce všeho druhu
 
 - Barvy jsou v `css/style.css` nahoře: **Claret** `#670626` a **Pink** `#FFBDC5`.
