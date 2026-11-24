@@ -42,6 +42,10 @@ Statický web pro GitHub Pages. Nic se nekompiluje: co je ve složce, to je na w
 - Texty přímo v HTML mají anglickou verzi v atributu `data-en="…"`. Když v HTML změníš český text, uprav i ten anglický.
 - Obrázky z příspěvků jsou ve složce `images/posty/` a u příspěvku je vybírá pole `img`.
 
+## Mezipaměť prohlížeče
+
+- Když změníš CSS nebo JS, zvyš v HTML číslo za `?v=` (např. `style.css?v=20261124c`), aby návštěvníkům nezůstala stará verze v mezipaměti.
+
 ## Jak přidat nový projekt
 
 V `js/projects.js` zkopíruj jeden existující blok `{ ... }`, změň `slug` a texty. Pokud chceš projekt na úvodní stránce, nastav `featured: true`. Malé věci bez vlastní stránky dej s `detail: false`, objeví se v „Další práci“.
