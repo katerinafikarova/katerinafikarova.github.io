@@ -153,12 +153,23 @@ p { margin: 0 0 1em; max-width: 62ch; }
   flex-direction: column;
 }
 .hero-photo {
+  /* barevné fleky v barvách identity (místo fotky) */
   position: absolute;
-  inset: 0;
+  inset: -10%;
   z-index: -2;
-  background: url("../images/hero.webp") 62% 30% / cover no-repeat;
-  filter: blur(6px) saturate(1.05);
-  transform: scale(1.08);
+  background:
+    radial-gradient(20% 26% at 60% 42%, rgba(103, 6, 38, .9), transparent 70%),
+    radial-gradient(18% 24% at 88% 16%, rgba(163, 18, 63, .8), transparent 70%),
+    radial-gradient(26% 32% at 84% 74%, #ff7f97, transparent 70%),
+    radial-gradient(22% 28% at 38% 78%, #f0647f, transparent 70%),
+    radial-gradient(24% 30% at 12% 16%, #ffe3e7, transparent 70%),
+    radial-gradient(20% 26% at 8% 70%, #ff9aac, transparent 70%),
+    var(--pink);
+  filter: blur(18px);
+  animation: hero-blobs 24s ease-in-out infinite alternate;
+}
+@keyframes hero-blobs {
+  to { transform: translate(-3%, 2%) scale(1.06) rotate(3deg); }
 }
 .hero::before {
   content: "";
@@ -166,8 +177,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(255,189,197,.96) 0%, rgba(255,189,197,.75) 34%, rgba(255,189,197,.15) 62%, rgba(255,189,197,.3) 100%),
-    linear-gradient(0deg, rgba(255,189,197,.9) 0%, rgba(255,189,197,0) 45%);
+    linear-gradient(90deg, rgba(255,189,197,.8) 0%, rgba(255,189,197,.4) 30%, rgba(255,189,197,0) 52%);
 }
 .hero-inner {
   flex: 1;
@@ -201,7 +211,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .hero-card:hover { color: var(--white); }
 
 .giant {
-  font-size: clamp(4.5rem, 27.4vw, 30rem);
+  font-size: clamp(4.1rem, 24.6vw, 27rem);
   font-weight: 500;
   letter-spacing: -0.07em;
   line-height: .8;
